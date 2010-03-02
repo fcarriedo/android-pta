@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, SpeechToTextTimerActivity!</string>
     <string name="app_name">TimerAssistant</string>
+    <string name="init_msg">Displays elapsed time</string>
+    <string name="chronometer_start">Start</string>
+    <string name="chronometer_stop">Stop</string>
+    <string name="chronometer_reset">Reset</string>
 </resources>

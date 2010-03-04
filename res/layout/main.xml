@@ -33,6 +33,19 @@
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:text="@string/init_msg"/>
-    
+    	
+    <TextView android:id="@+id/speech_recog_msg"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="()"
+    	android:textColor="#fffacd" 
+    	android:textSize="10.5sp"/>
+    	
+    <TextView android:id="@+id/remaining_time"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/remaining_time" 
+    	android:textColor="#abc" 
+    	android:textSize="12.5sp"/>
 
 </LinearLayout>

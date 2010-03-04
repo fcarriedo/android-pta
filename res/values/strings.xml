@@ -5,4 +5,5 @@
     <string name="chronometer_start">Start</string>
     <string name="chronometer_stop">Stop</string>
     <string name="chronometer_reset">Reset</string>
+    <string name="remaining_time">Time Remaining</string>
 </resources>

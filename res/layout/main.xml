@@ -4,48 +4,70 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
+    <TextView android:id="@+id/comment"
+    	android:layout_width="128dip"
+    	android:layout_height="wrap_content"
+    	android:gravity="center_horizontal"
+    	android:textColor="#666"
+    	android:paddingTop="35dip"    
+    	android:paddingLeft="10dip"
+    	android:paddingRight="10dip"	
+    	android:background="@drawable/comment"
+    	android:layout_marginTop="15dip"
+    	android:textSize="11.5sp"/>   
+
+    <ImageView android:id="@+id/androidina" 
+    	android:layout_width="wrap_content" 
+    	android:layout_height="wrap_content"
+    	android:src="@drawable/user_female"/>         	    	
+
     <Chronometer android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:paddingBottom="30dip"
-        android:paddingTop="30dip"
+        android:paddingBottom="10dip"
+        android:paddingTop="10dip"
+        android:textSize="50dip"
+        android:typeface="monospace"
         />
-
-    <Button android:id="@+id/start"
+        
+    <TextView android:id="@+id/remaining_time"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/remaining_time" 
+    	android:textColor="#abc" 
+    	android:textSize="12.5sp"/>        
+    
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:text="@string/chronometer_start">
-        <requestFocus />
-    </Button>
-
-    <Button android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:text="@string/chronometer_stop"/>
+        android:layout_height="wrap_content">
+    
+	    <Button android:id="@+id/start"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:text="@string/chronometer_start">
+	        <requestFocus />
+	    </Button>
+	
+	    <Button android:id="@+id/stop"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:text="@string/chronometer_stop"/>
+        
+ 	</LinearLayout>
+        
 
     <Button android:id="@+id/reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
-        android:text="@string/chronometer_reset"/>
-    
-    <TextView android:id="@+id/time_msg"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:text="@string/init_msg"/>
-    	
+        android:text="@string/chronometer_reset"/>	    	
+
     <TextView android:id="@+id/speech_recog_msg"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
     	android:text="()"
     	android:textColor="#fffacd" 
     	android:textSize="10.5sp"/>
-    	
-    <TextView android:id="@+id/remaining_time"
-    	android:layout_width="wrap_content"
-    	android:layout_height="wrap_content"
-    	android:text="@string/remaining_time" 
-    	android:textColor="#abc" 
-    	android:textSize="12.5sp"/>
 
 </LinearLayout>

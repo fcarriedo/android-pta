@@ -17,6 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Chronometer.OnChronometerTickListener;
 
+/**
+ * Ideas:
+ * 1. Have button to start: How much time do you want me to time for you.?
+ * 2 "The [5 minutes|hours|seconds] are over. Do you need more time?"
+ * 3. ..."No thanks.. we are over"  --> Identify 'Over'
+ * 4. Stop the timer or reset it after it understood
+ * 
+ * @author apple
+ */
 public class SpeechToTextTimerActivity extends Activity {
     
 	private static final String TAG = SpeechToTextTimerActivity.class.getSimpleName();
@@ -29,9 +38,10 @@ public class SpeechToTextTimerActivity extends Activity {
 	private Button stopButton;
 	private Button resetButton;
 	
-	private TextView timerMsg;
 	private TextView speechMsg;
 	private TextView remainingTime;
+	
+	private TextView comment;
 	
 	private TextToSpeech tts;
 	private boolean readyToSpeak;
@@ -47,7 +57,8 @@ public class SpeechToTextTimerActivity extends Activity {
         
         chrono = (Chronometer)findViewById(R.id.chronometer);
         
-        timerMsg = (TextView)findViewById(R.id.time_msg);
+        comment = (TextView)findViewById(R.id.comment);
+
         speechMsg = (TextView)findViewById(R.id.speech_recog_msg);
         
         startButton = (Button)findViewById(R.id.start);
@@ -92,8 +103,9 @@ public class SpeechToTextTimerActivity extends Activity {
     }
     
     public void speakAndHear(String textToSpeak, long sleepTime, boolean startSpeechRecognition) {
+    	comment.setText(textToSpeak);
     	if(readyToSpeak) {
-    		clearChronoTickListener();
+    		clearChronoTickListener();    		
     		Toast.makeText(this, "Speaking...", 5000).show();
     		tts.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null);
     		if (startSpeechRecognition) {
@@ -129,11 +141,10 @@ public class SpeechToTextTimerActivity extends Activity {
         	@Override
         	public void onChronometerTick(Chronometer chron) {
         		elapsedSeconds = (SystemClock.elapsedRealtime() - chrono.getBase()) / 1000;
-				timerMsg.setText("Elapsed time : " + elapsedSeconds);
 				remainingTime.setText("Remaining time : " + (cutofTime-elapsedSeconds) + " seconds.");
 				if (elapsedSeconds % cutofTime == 0) {
 					// Say something on text to speech or play little mp3/wav
-					speakAndHear("Timer done. Do you need more time?", 2500, true);					
+					speakAndHear("Timer done. Do you need more time?", 3400, true);					
         		}
         	}
         });
@@ -163,10 +174,10 @@ public class SpeechToTextTimerActivity extends Activity {
         		speechMsg.setText("You said : '" + str + "'");
 				String[] parts = str.split(" ");
 				for (String part : parts) {
-					if (part.startsWith("yes")) {
+					if (part.startsWith("more")) {
 						speakAndHear("How much time?", 2300, true);
 						attempts = 0;
-					} else if (part.startsWith("no")) {
+					} else if (part.startsWith("over")) {
 						finishActivity();
 					} else {
 						try {
@@ -197,7 +208,7 @@ public class SpeechToTextTimerActivity extends Activity {
 			}
         	
         	if(isTimeSet && isUnitsSet) {
-        		speakAndHear("Snoozing for " + cutofTime + " more " + units, 0, false);
+        		speakAndHear("I'll remind you in " + cutofTime + " more " + units, 0, false);
         		cutofTime = cutofTime*multiplier;
         		addChronoTickListener();
         	} else {
@@ -223,4 +234,5 @@ public class SpeechToTextTimerActivity extends Activity {
 			// Do nothing.
 		}
     }
+    
 }
